@@ -18,16 +18,24 @@ public class Main
       String snum = line.substring(1);
       String dir = line.substring(0,1);
       int num = Integer.parseInt(snum);
-      if (dir.equals("L"))
+      if (dir.equals("R"))
       {
-        num = -num;
-      }
+        if (num + dial > 99) 
+        {
+          //set to 0, count rotations, add remainder
+        } else {
+          dial += num;
+        }
+      } else 
+      {
+        dial = -(100 - dial);
+        if (dial + num < -99)
+        {
+          // set to zero, add circle, same as other
+        } else {
+          
+        }
 
-      dial += num;
-      dial %= 100;
-      if (dial == 0)
-      {
-        answer++;
       }
     }
 
