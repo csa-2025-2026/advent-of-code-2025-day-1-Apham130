@@ -15,31 +15,38 @@ public class Main
     while (sc.hasNext())  // as long as the Scanner has more lines to read from the file...
     {
       String line = sc.nextLine();  // gets the next line of input.  This is like "R802"
-      String snum = line.substring(1);
       String dir = line.substring(0,1);
-      int num = Integer.parseInt(snum);
-      if (dir.equals("R"))
+      int num = Integer.parseInt(line.substring(1));
+      if (dir.equals("L"))
       {
-        if (num + dial > 99) 
-        {
-          //set to 0, count rotations, add remainder
-        } else {
-          dial += num;
-        }
-      } else 
-      {
-        dial = -(100 - dial);
-        if (dial + num < -99)
-        {
-          // set to zero, add circle, same as other
-        } else {
+        num = -num;
+        System.out.println(dial + " " + line);
+        for (int i = -1; i >= num; i--) {
+          dial--;
+          dial %= 100;
           
+          if (dial == 0) {
+            System.out.println(dial);
+            System.out.println(num);
+            answer++;
+          }
         }
+      } else
+      {
+        System.out.println(dial + " " + line);
+        for (int i = 1; i <= num; i++) {
+          dial++;
+          dial %= 100;
 
+          if (dial == 0) {
+            System.out.println(num);
+            answer++;
+          }
+        }
       }
     }
 
-    System.out.println("The password is " + answer);
+    System.out.println("The answer is " + answer);
     sc.close();
   }
 }
